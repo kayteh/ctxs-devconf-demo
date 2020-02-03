@@ -1,0 +1,48 @@
+version: 1.0
+provider:
+  name: openfaas
+functions:
+
+  blog--list-posts:
+    lang: golang-grpc
+    handler: ./blog--list-posts
+    image: docker.pkg.github.com/kayteh/ctxs-devconf-demo/blog-list-posts:latest
+    labels:
+      com.openfaas.scale.zero: true
+    annotations:
+      com.roleypoly/faas-rpc: blog.Blog/ListPosts
+    secrets:
+      - firebase-config
+
+  blog--get-post:
+    lang: golang-grpc
+    handler: ./blog--get-post
+    image: docker.pkg.github.com/kayteh/ctxs-devconf-demo/blog-get-post:latest
+    labels:
+      com.openfaas.scale.zero: true
+    annotations:
+      com.roleypoly/faas-rpc: blog.Blog/GetPost
+    secrets:
+      - firebase-config
+
+  blog--create-post:
+    lang: golang-grpc
+    handler: ./blog--create-post
+    image: docker.pkg.github.com/kayteh/ctxs-devconf-demo/blog-create-post:latest
+    labels:
+      com.openfaas.scale.zero: true
+    annotations:
+      com.roleypoly/faas-rpc: blog.Blog/CreatePost
+    secrets:
+      - firebase-config
+      
+  blog--delete-post:
+    lang: golang-grpc
+    handler: ./blog--delete-post
+    image: docker.pkg.github.com/kayteh/ctxs-devconf-demo/blog-delete-post:latest
+    labels:
+      com.openfaas.scale.zero: true
+    annotations:
+      com.roleypoly/faas-rpc: blog.Blog/DeletePost
+    secrets:
+      - firebase-config
