@@ -8,11 +8,7 @@ import (
 	"k8s.io/klog"
 )
 
-type BlogMixin struct {
-	db *firestore.Client
-}
-
-func NewBlogMixin() BlogMixin {
+func NewFirestore() *firestore.Client {
 	opt := option.WithCredentialsFile("/var/openfaas/secrets/firebase-config")
 	ctx := context.Background()
 	app, err := firebase.NewApp(ctx, nil, opt)
@@ -20,12 +16,10 @@ func NewBlogMixin() BlogMixin {
 		klog.Fatal(err)
 	}
 
-	db, err := app.Firestore(ctx)
+	firestore, err := app.Firestore(ctx)
 	if err != nil {
 		klog.Fatal(err)
 	}
 
-	return BlogMixin{
-		db: db,
-	}
+	return firestore
 }
