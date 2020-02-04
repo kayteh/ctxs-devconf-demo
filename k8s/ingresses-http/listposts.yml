@@ -1,0 +1,10 @@
+apiVersion: openfaas.com/v1alpha2
+kind: FunctionIngress
+metadata:
+  name: fni-blog--list-posts
+  namespace: openfaas
+spec:
+  domain: ""
+  function: "blog--list-posts"
+  ingressType: "nginx"
+  path: "/posts"
