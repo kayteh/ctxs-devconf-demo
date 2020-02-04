@@ -3,12 +3,11 @@ module github.com/kayteh/ctxs-devconf-demo
 go 1.13
 
 require (
-	cloud.google.com/go v0.52.0
+	cloud.google.com/go v0.52.0 // indirect
 	cloud.google.com/go/firestore v1.1.1
 	cloud.google.com/go/storage v1.5.0 // indirect
 	firebase.google.com/go v3.12.0+incompatible
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	go.opencensus.io v0.22.3 // indirect
 	golang.org/x/exp v0.0.0-20200119233911-0405dc783f0a // indirect
 	golang.org/x/lint v0.0.0-20200130185559-910be7a94367 // indirect
