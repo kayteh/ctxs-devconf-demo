@@ -7,6 +7,7 @@ import (
 	empty "github.com/golang/protobuf/ptypes/empty"
 	pkg "github.com/kayteh/ctxs-devconf-demo/pkg/blog"
 	proto "github.com/kayteh/ctxs-devconf-rpc/blog"
+	"k8s.io/klog"
 
 	"google.golang.org/grpc"
 )
@@ -26,9 +27,19 @@ func Register(server *grpc.Server) {
 
 // ListPosts from Firestore
 func (b *BlogService) ListPosts(ctx context.Context, req *empty.Empty) (*proto.PostList, error) {
-	rootCollection := b.firestore.Collection("/devconf_blogposts")
+	rootCollection := b.firestore.Collection("devconf_blogposts")
+	if rootCollection == nil {
+		klog.Error("rootCollection is nil")
+		return nil, nil
+	}
 
-	documents, err := rootCollection.Documents(context.Background()).GetAll()
+	documentIterator := rootCollection.Documents(context.Background())
+	if documentIterator == nil {
+		klog.Error("documentIterator is nil")
+		return nil, nil
+	}
+
+	documents, err := documentIterator.GetAll()
 	if err != nil {
 		return nil, err
 	}
