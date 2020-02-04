@@ -4,7 +4,7 @@ provider:
 functions:
 
   blog--list-posts:
-    lang: golang-grpc
+    lang: golang-middleware
     handler: ./blog--list-posts
     image: katie/ctxs-dc-blog-list-posts
     labels:
