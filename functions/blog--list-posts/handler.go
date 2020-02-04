@@ -42,13 +42,15 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 
 // ListPosts from Firestore
 func (b *BlogService) ListPosts() ([]BlogPost, error) {
-	rootCollection := b.firestore.Collection("/devconf_blogposts")
+	rootCollection := b.firestore.Collection("devconf_blogposts")
 	if rootCollection == nil {
+		klog.Error("rootCollection is nil")
 		return []BlogPost{}, nil
 	}
 
 	documentIterator := rootCollection.Documents(context.Background())
 	if documentIterator == nil {
+		klog.Error("documentIterator is nil")
 		return []BlogPost{}, nil
 	}
 
