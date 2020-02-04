@@ -1,0 +1,10 @@
+apiVersion: openfaas.com/v1alpha2
+kind: FunctionIngress
+metadata:
+  name: fni-blog--get-post
+  namespace: openfaas
+spec:
+  domain: ""
+  function: "blog--get-post"
+  ingressType: "nginx"
+  path: "/blog.Blog/GetPost$"
