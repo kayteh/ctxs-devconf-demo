@@ -14,16 +14,16 @@ functions:
     secrets:
       - firebase-config
 
-  # blog--get-post:
-  #   lang: golang-grpc
-  #   handler: ./blog--get-post
-  #   image: docker.pkg.github.com/kayteh/ctxs-devconf-demo/blog-get-post
-  #   labels:
-  #     com.openfaas.scale.zero: true
-  #   annotations:
-  #     com.roleypoly/faas-rpc: blog.Blog/GetPost
-  #   secrets:
-  #     - firebase-config
+  blog--get-post:
+    lang: golang-middleware
+    handler: ./blog--get-post
+    image: katie/ctxs-dc-blog-get-post
+    labels:
+      com.openfaas.scale.zero: true
+    annotations:
+      com.roleypoly/faas-rpc: blog.Blog/GetPost
+    secrets:
+      - firebase-config
 
   # blog--create-post:
   #   lang: golang-grpc
